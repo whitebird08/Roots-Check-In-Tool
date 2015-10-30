@@ -43,7 +43,7 @@ button {
 
 iframe[src^="https://apis.google.com"] {
 	display: none;
-	
+
 }
 
 .locationImage {
@@ -221,7 +221,7 @@ iframe[src^="https://apis.google.com"] {
 }
 
 #groveCalendar.table-striped>tbody>tr:nth-child(1) {
-	border: #8BAB42 solid 3px;
+	border: #8BAB43 solid 5px;
 	border-radius: 5px;
 }
 

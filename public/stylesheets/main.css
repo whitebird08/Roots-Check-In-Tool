@@ -271,3 +271,39 @@ iframe[src^="https://apis.google.com"] {
 .all-absent {
 	margin-right: 50px;
 }
+
+/*Teacher Login Page*/
+.teacher-login-box{
+	box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
+	border-radius: 2px;
+	padding: 0 !important;
+	max-width: 500px;
+	margin: 10% auto 0;
+	width: 80%;
+}
+.teacher-login-box .login-title{
+	width: 100%;
+	text-align:center;
+	background-color:#73b342;
+}
+.teacher-login-box .login-title h4{
+	margin: 0;
+    color: #fff;
+    font-size: 30px;
+    padding: 50px 0;
+}
+.teacher-login-box .login-button{
+	width: 100%;
+	background-color: #fafafa;
+}
+.teacher-login-box .login-button button{
+	background-color:#73b342;
+	color: #fff;
+	margin: 80px 0px;
+}
+.teacher-login-box .login-button button:hover{
+	background-color:#629939;
+}
+.teacher-login-box .login-button button .fa-2x {
+     font-size: 1.2em;
+}

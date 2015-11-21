@@ -29,7 +29,8 @@
     "webpack": "^1.12.2"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "nodemon --exec jasmine & nodemon --exec standard"
   },
   "engines": {
     "node": "0.10.x"

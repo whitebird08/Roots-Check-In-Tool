@@ -54,6 +54,12 @@ var teacherController = {
 				});
 			}
 		});
+	},
+
+	teacherStatus: function(req, res){
+		var data = req.body
+		console.log("teacherstatus")
+		console.log(data)
 	}
 
 }

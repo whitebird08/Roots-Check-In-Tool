@@ -27,7 +27,7 @@ var teacherController = {
 		Teacher.findOne({ googleId: data.id}, function(err, teacher) {
 			if (!teacher) {
 				Teacher.create({
-					email: data.email,
+					// email: data.email,
 					googleId: data.id,
 					name: data.name,
 					image: data.image,

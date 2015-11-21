@@ -200,7 +200,7 @@ teacherSigninCallback = function(authResult){
 			var signInData = {
 				id: response.id,
 				name: response.displayName,
-				email: response.emails[0].value,
+				// email: response.emails[0].value,
 				image: response.image.url
 			}
 			teacherRedirect(signInData);

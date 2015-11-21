@@ -278,7 +278,7 @@ iframe[src^="https://apis.google.com"] {
 	border-radius: 2px;
 	padding: 0 !important;
 	max-width: 500px;
-	margin: 10% auto 0;
+	margin: 5% auto 0;
 	width: 80%;
 }
 .teacher-login-box .login-title{

@@ -17,7 +17,7 @@ renderProgressBar = function(eventStart){
 	if (eventStart && currentTime.isAfter( eventStart ) ) {
 		return null;
 	} else {
-		$('.timer').countDown({  
+		$('.timer').countDown({
 			start_time: currentTime, //Time when the progress bar is at 0%
 			end_time: eventStart || currentTime.add(1, 'ms'), //Time Progress bar is at 100% and timer runs out, when no eventStart is passed for end_time, use current time with 1 added ms to trigger onComplete and update_progress
 			progress: $('.progress-bar'), //There dom element which should display the progressbar.
@@ -30,7 +30,7 @@ renderProgressBar = function(eventStart){
 					$(element).removeClass('progress-bar-success').addClass('progress-bar-warning');
 				} else if (Math.floor(progress) === 75) {
 					$(element).removeClass('progress-bar-warning').addClass('progress-bar-danger');
-				} 
+				}
 
 				element.attr('aria-valuenow', Math.floor(progress));//We set a custom attribute, 'area-valuenow' containing the progress
 				element.css('width', Math.floor(progress)+'%');//Fill the bar with percentage of progress
@@ -110,7 +110,7 @@ getCalendar = function(userData){
 	//get users google calendar events starting with today
 	gapi.client.request('https://www.googleapis.com/calendar/v3/calendars/' + userData.email + '/events/?singleEvents=true&timeMin=' + start + '&timeMax=' + end + '&orderBy=startTime').execute(function(response) {
 
-		// Parse response to put events in correct format and add that to the user data 
+		// Parse response to put events in correct format and add that to the user data
 		userData.calendar = _.map(response.items, function(event){
 			return {
 					eventId: event.id,
@@ -120,11 +120,11 @@ getCalendar = function(userData){
 					end: event.end.dateTime,
 					description: event.description,
 					summary: event.summary
-				
+
 				};
 		});
 
-		/* 
+		/*
 			Now that we have the student's calendar, we save it in case new events have been added.
 
 			Before waiting for the save to process, we make an initial call to renderNextEvent without waiting for the student object (including grove calendar) to come back. This is to speed up rendering in case the next event is a google calendar event.
@@ -171,7 +171,7 @@ signinCallback = function(authResult) {
 			tracker.on('SCAN!', handleScan);
 
 			$('#name').append('<h2>' + response.displayName + '\'s Next Step</h2>');
-			
+
 			//add google id to scan href/link. that way when scan returns scanned_data we have the users id
 			$('#scan-button').attr('href', 'scan://scan?callback=https%3A%2F%2Froots-elementary.herokuapp.com/scanredirect/'+response.id);
 
@@ -187,4 +187,40 @@ signinCallback = function(authResult) {
 		//   "immediate_failed" - Could not automatically log in the user
 		console.log('Sign-in state: ' + authResult['error']);
 	}
+}
+
+teacherSigninCallback = function(authResult){
+	if (authResult['status']['signed_in']) {
+		$('#signinButton').hide();
+		alert("Yay!");
+
+		//make call to google profile for users account information
+		gapi.client.request('https://www.googleapis.com/plus/v1/people/me?fields=name(familyName%2Cformatted%2CgivenName)%2CdisplayName%2Cemails%2Fvalue%2Cimage%2Furl%2Cid').execute(function(response) {
+
+			var signInData = {
+				id: response.id,
+				name: response.displayName,
+				// email: response.emails[0].value,
+				image: response.image.url
+			}
+			teacherRedirect(signInData);
+		});
+
+	}
+	else{
+		console.log('Sign-in state: ' + authResult['error']);
+	}
+}
+
+teacherRedirect = function(teacherData){
+	alert("Reach Teacher Redirect");
+	console.log(teacherData);
+	$.ajax ({
+			type: "POST",
+			url: 'api/teacher',
+			data: JSON.stringify(teacherData),
+			contentType: 'application/json'
+			// success: renderNextEvent
+	});
+
 }

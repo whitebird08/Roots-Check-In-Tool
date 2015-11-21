@@ -58,13 +58,17 @@ app.get('/teacher-login', function(req, res) {
 	indexController.teacherLogin(req, res, socket);
 });
 
+app.get('/grove-overview', function(req, res) {
+	indexController.groveOverview(req, res, socket);
+});
+
+
 // Student Full schedule
 app.get('/student-full-schedule', indexController.studentFullSchedule);
 
 //API Routes
 app.put('/api/user/bulk', apiController.bulkUpdateUsers);
-app.post('/api/teacher', teacherController.saveTeacher);
-app.post('/api/user', googleController.saveUser);
+app.post('/api/teacher', teacherController.saveTeacher);app.post('/api/user', googleController.saveUser);
 app.get('/api/user', apiController.getUsers);
 app.get('/api/user/:id', apiController.getUser);
 app.get('/api/grove/:user_id', apiController.getGroveCalendar);

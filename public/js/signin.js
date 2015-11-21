@@ -192,7 +192,6 @@ signinCallback = function(authResult) {
 teacherSigninCallback = function(authResult){
 	if (authResult['status']['signed_in']) {
 		$('#signinButton').hide();
-		alert("Yay!");
 
 		//make call to google profile for users account information
 		gapi.client.request('https://www.googleapis.com/plus/v1/people/me?fields=name(familyName%2Cformatted%2CgivenName)%2CdisplayName%2Cemails%2Fvalue%2Cimage%2Furl%2Cid').execute(function(response) {
@@ -213,14 +212,14 @@ teacherSigninCallback = function(authResult){
 }
 
 teacherRedirect = function(teacherData){
-	alert("Reach Teacher Redirect");
-	console.log(teacherData);
 	$.ajax ({
 			type: "POST",
 			url: 'api/teacher',
 			data: JSON.stringify(teacherData),
-			contentType: 'application/json'
-			// success: renderNextEvent
+			contentType: 'application/json',
+			success: function(){
+				window.location.href = '/grove-overview';
+			}
 	});
 
 }

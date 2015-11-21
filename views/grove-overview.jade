@@ -1,0 +1,91 @@
+extends layout
+
+block stylesheets
+	//- link(href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet")
+
+block content
+	nav.navbar.navbar-default(role='navigation')
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					img(src="./img/roots-logo.png" style="width:190px;height:auto").navbar-brand
+
+
+				#bs-example-navbar-collapse-1.collapse.navbar-collapse
+					ul.nav
+						ul.nav.navbar-nav.navbar-right(style="margin-top:9px")
+							li
+								a(href='/grove-calendar') Create Grove Activities
+							li
+								a(href='/student-tracker') Student Tracker
+
+	.container
+		a#zone-flex.zone(href='javascript:void(0);')
+			h2 Flex
+			.avatar Self
+			h3
+				span.now-count 0
+				|  students scheduled
+			.bottom-stripe
+				.avatar other1
+				.avatar other2
+				.avatar other3
+				h3
+					span.next-count 0
+					|  students on deck
+		a#zone-maker.zone(href='javascript:void(0);')
+			h2 Maker
+			.avatar Self
+			h3
+				span.now-count 0
+				|  students scheduled
+			.bottom-stripe
+				.avatar other1
+				.avatar other2
+				.avatar other3
+				h3
+					span.next-count 0
+					|  students on deck
+		a#zone-ipad.zone(href='javascript:void(0);')
+			h2 iPad
+			.avatar Self
+			h3
+				span.now-count 0
+				|  students scheduled
+			.bottom-stripe
+				.avatar other1
+				.avatar other2
+				.avatar other3
+				h3
+					span.next-count 0
+					|  students on deck
+		a#zone-library.zone(href='javascript:void(0);')
+			h2 Library
+			.avatar Self
+			h3
+				span.now-count 0
+				|  students scheduled
+			.bottom-stripe
+				.avatar other1
+				.avatar other2
+				.avatar other3
+				h3
+					span.next-count 0
+					|  students on deck
+		a#zone-writing.zone(href='javascript:void(0);')
+			h2 Writing
+			.avatar Self
+			h3
+				span.now-count 0
+				|  students scheduled
+			.bottom-stripe
+				.avatar other1
+				.avatar other2
+				.avatar other3
+				h3
+					span.next-count 0
+					|  students on deck

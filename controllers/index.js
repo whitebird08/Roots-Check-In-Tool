@@ -22,6 +22,9 @@ var indexController = {
 	},
 	teacherLogin: function(req, res, socket) {
 		res.render('teacher-login')
+	},
+	groveOverview: function(req, res, socket) {
+		res.render('grove-overview')
 	}
 };
 

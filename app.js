@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var indexController = require('./controllers/index.js');
 var googleController = require('./controllers/google.js');
 var apiController = require('./controllers/apiController.js');
+var teacherController = require('./controllers/teacherController.js');
 
 var app = express();
 app.set('view engine', 'jade');
@@ -53,7 +54,11 @@ app.get('/student-tracker', function(req, res) {
 	indexController.studentTracker(req, res, socket);
 });
 
-// Student Full schedule 
+app.get('/teacher-login', function(req, res) {
+	indexController.teacherLogin(req, res, socket);
+});
+
+// Student Full schedule
 app.get('/student-full-schedule', indexController.studentFullSchedule);
 
 //API Routes

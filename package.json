@@ -12,6 +12,7 @@
     "font-awesome": "^4.4.0",
     "imports-loader": "^0.6.4",
     "jade": "^1.9.1",
+    "jasmine": "^2.3.2",
     "jquery": "^2.1.4",
     "jquery-ui": "^1.10.5",
     "jquery.countdown": "^1.2.4",

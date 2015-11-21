@@ -63,6 +63,7 @@ app.get('/student-full-schedule', indexController.studentFullSchedule);
 
 //API Routes
 app.put('/api/user/bulk', apiController.bulkUpdateUsers);
+app.post('/api/teacher', teacherController.saveTeacher);
 app.post('/api/user', googleController.saveUser);
 app.get('/api/user', apiController.getUsers);
 app.get('/api/user/:id', apiController.getUser);

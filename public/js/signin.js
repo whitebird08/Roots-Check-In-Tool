@@ -215,12 +215,12 @@ teacherSigninCallback = function(authResult){
 teacherRedirect = function(teacherData){
 	alert("Reach Teacher Redirect");
 	console.log(teacherData);
-	// $.ajax ({
-	// 		type: "POST",
-	// 		url: 'api/teacher',
-	// 		data: JSON.stringify(teacherData),
-	// 		contentType: 'application/json',
-	// 		success: renderNextEvent
-	// });
+	$.ajax ({
+			type: "POST",
+			url: 'api/teacher',
+			data: JSON.stringify(teacherData),
+			contentType: 'application/json'
+			// success: renderNextEvent
+	});
 
 }

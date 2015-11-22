@@ -66,6 +66,26 @@ webpackJsonp([1],[
 
 	function tapin(zone){
 		console.log("you are the zone: "+zone.id);
+		data = {
+			teacher_id: 54321,
+			zone: zone.id
+		};
+		url = "/api/zone";
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: data,
+			dataType: "json",
+			success: function(){
+				refreshMap();
+			}
+		})
+
+
+	}
+
+	function refreshMap(){
+		console.log("refreshing the map");
 	}
 
 	// getStudents();

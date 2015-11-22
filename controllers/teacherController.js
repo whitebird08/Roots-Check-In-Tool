@@ -71,12 +71,12 @@ var teacherController = {
 				res.send(zones);
 			}
 		});
-	}
+	},
 
 	addTeachertoZone: function(req, res){
 		var data = req.body;
-		teacher = body.teacher_id;
-		zone_request = body.zone;
+		var teacher = data.teacher_id;
+		var zone_request = data.zone;
 		Zone.findOne({}, function(err, zone) {
 			if(!zone){
 				var json = {
@@ -86,6 +86,8 @@ var teacherController = {
 					"zone-library": [],
 					"zone-writing": []
 				};
+				console.log(teacher.zone)
+				console.log()
 				json[zone_request].push(teacher);
 				Zone.create(json, function(err, zone) {
 					if (err) {
@@ -96,13 +98,22 @@ var teacherController = {
 						res.send(zone);
 					}
 				});
-
-				}
 			}
 			else{
-
+				zone[zone_request].push(teacher);
+				console.log(zone);
+				zone.update({$set: zone }, function(err, result) {
+					if (err) {
+						console.error(err);
+						res.send(err);
+					}
+					else {
+						// Send back the entire use object, extended with the new data, because the update results just give us number of documents affected
+						res.send( _.extend(zone) );
+					}
+				});
 			}
-		}
+		});
 	}
 
 }

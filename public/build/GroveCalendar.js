@@ -1,1 +1,376 @@
-webpackJsonp([0],[function(e,exports,t){function n(e){i.findWhere(c,{id:e})||(c=c.concat({id:e,text:e}),s('select[name="focus_area"]').select2({data:c,tags:!0,allowClear:!0,width:"style"}))}function a(e,t){s("#add-event-text").text("   Add Event"),s('#activity-form select[name="activity"]').val(null),s('#activity-form select[name="focus_area"]').select2("val",null),t||s("#add-event").off("click"),e&&(s("#activity-form").hide("fast"),s("#calendar-button-container").show("fast"))}var i=t(1),s=(t(3),t(90));t(91),t(92),t(105);var o=[],c=i.chain(FOCUS_AREAS).keys().sortBy().value().map(function(e){return{id:e,text:e}}),r=function(e){this.googleId=e.googleId,this.name=e.name,this.image=e.image,this.calendar=e.groveCalendar||[],this.option=s("<option>"+e.name+"</option>").attr("value",e.googleId),this.optionRendered=!1,this.eventDisplays=i.map(e.groveCalendar,function(e,t){return new l(this,e,t)}.bind(this))||[]};r.prototype.renderOption=function(e){this.optionRendered||(s(e).append(this.option),this.optionRendered=!0)},r.prototype.renderEvents=function(e){i.each(this.eventDisplays,function(t){t.render(e),n(t.event.focus_area)})},r.prototype.updateSort=function(e,t){var n=this,a=s("#events-list").sortable("toArray",{attribute:"data-index"});a.forEach(function(e,t){e!=t&&(n.eventDisplays[e].index=t,s(n.eventDisplays[e].el).attr("data-index",t))}),this.eventDisplays=i.sortBy(this.eventDisplays,"index"),s("#save-calendar").removeClass("disabled").empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle')},r.prototype.renderCalendar=function(e){s("#student-name").text(this.name),s("#title-text").text("'s Grove Cycle"),s("#student-icon").empty().append('<img class="student-icon" src="'+this.image+'">'),a(!0,!1),s(e).empty(),this.renderEvents(e);var t=this;s("#calendar-container").show(),s("#events-list").sortable({stop:t.updateSort.bind(t)}),s("#create-new-event").off("click").on("click",function(e){s("#activity-legend").text("New event for: "+t.name),s("#activity-form").show("fast"),s("#add-event").on("click",function(e){e.preventDefault();var i={},o=s('#activity-form select[name="activity"]').val();i.location=o.split("#")[0],i.activity=o.split("#")[1];var c=t.eventDisplays.length,r=s('#activity-form select[name="focus_area"]').val();i.focus_area=r,n(r),i=new l(t,i,c),t.eventDisplays.push(i),i.render("#events-list"),a(!1,!0),s("#save-calendar").removeClass("disabled").empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle')}),s("#cancel-event-add").on("click",function(e){e.preventDefault(),a(!0)})}),s("#save-calendar").empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle').addClass("disabled"),s("#save-calendar").off("click").on("click",function(e){s("#save-calendar").empty().text("Saving...").addClass("disabled");var n=t.eventDisplays.map(function(e){return e.event.checkedIn=!1,e.event});s.ajax("/api/grove/"+t.googleId,{method:"PUT",data:JSON.stringify({calendar:n}),contentType:"application/json",success:function(){s("#save-calendar").empty().append('<i class="fa fa-calendar"></i>   Cycle Saved!')},error:function(e,t,n){s("#save-calendar").empty().removeClass("btn-success").addClass("btn-danger").text("Error Saving").removeClass("disabled")}})})};var l=function(e,t,n){this.student=e,this.event=t,this.index=n,this.el=this.createDisplay()};l.prototype.createDisplay=function(){var e="<tr></tr>",t=s("<td></td>").text(this.event.location),n=s("<td></td>").text(this.event.activity),a=s("<td></td>").text(this.event.focus_area),i="<td></td>";this.editButton=s('<button class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></button>'),i=s(i).append(this.editButton);var o="<td></td>";return this.removeButton=s('<button class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>'),o=s(o).append(this.removeButton),s(e).attr("data-index",this.index).append(t,n,a,i,o)[0]},l.prototype.render=function(e,t){var i=this;if(t){var o=i.el;i.el=i.createDisplay(),s(o).replaceWith(i.el)}else s(e).append(this.el);s(this.editButton).click(function(e){s('#activity-form select[name="activity"]').val(i.event.location+"#"+i.event.activity),s('#activity-form select[name="focus_area"]').select2("val",i.event.focus_area),s("#add-event-text").text("   Save"),s("#activity-form").show("fast",function(){s("#add-event").off("click").one("click",function(e){e.preventDefault();var t=s('#activity-form select[name="activity"]').val();t?(i.event.location=t.split("#")[0],i.event.activity=t.split("#")[1]):(i.event.location="",i.event.activity="");var o=s('#activity-form select[name="focus_area"]').val();i.event.focus_area=o,n(o),a(!0),i.render("#events-list",!0),s("#save-calendar").removeClass("disabled")}),s("#cancel-event-add").on("click",function(e){e.preventDefault(),a(!0)})})}),s(this.removeButton).click(function(e){s(i.el).remove(),i.student.eventDisplays.splice(i.index,1),i.student.eventDisplays.forEach(function(e){e.index>i.index&&e.index--}),a(!0)})},s(function(){i.keys(GROVE_ACTIVITIES).forEach(function(e){var t=s("<optgroup>").attr("label",e);GROVE_ACTIVITIES[e].forEach(function(n){var a=s("<option>").attr("value",[e,n].join("#")).text(n);t.append(a)}),s('select[name="activity"]').append(t)}),s('select[name="focus_area"]').css("width","100%").select2({data:c,tags:!0,width:"style"}),s.get("/api/grove",function(e){o=i.map(i.sortBy(e,"name"),function(e){return student=new r(e),student.renderOption("#student-names-select"),student}),s("#student-names-select").on("change",function(e){var t=i.find(o,{googleId:e.target.value});t.renderCalendar("#events-list")}),s("#student-name-search").on("keyup",function(e){s("#student-names-select").css("visibility","");var t=s(this).val().toLowerCase();i.each(o,function(e){e.name.toLowerCase().match(t)?e.renderOption("#student-names-select"):(s(e.option).remove(),e.optionRendered=!1)}),1===s("#student-names-select option").length&&s("#student-names-select").trigger("change")})})})}]);
+webpackJsonp([0],[
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Requires
+
+	var _ = __webpack_require__(1);
+	var moment = __webpack_require__(3);
+	var $ = __webpack_require__(90);
+	__webpack_require__(91);
+	__webpack_require__(92);
+	__webpack_require__(105);
+
+	// Global variable students: array of all the student objects
+	var students = [];
+
+	// Load the FOCUS_AREA options for initializing the select2, allowing teachers to input new focus areas if desired
+	var FOCUS_AREA_OPTIONS = _.chain(FOCUS_AREAS).keys().sortBy().value().map( function(fa) {
+		return {
+			id: fa,
+			text: fa
+		};
+	});
+
+	// Helper function for adding to FOCUS_AREA_OPTIONS
+	function addToFocus(focus_area) {
+		// Check if the focus_area already exists in the list, otherwise add it
+		if (!_.findWhere(FOCUS_AREA_OPTIONS, {id: focus_area})) {
+			FOCUS_AREA_OPTIONS = FOCUS_AREA_OPTIONS.concat({
+				id: focus_area,
+				text: focus_area
+			});
+
+			$('select[name="focus_area"]').select2({
+				data: FOCUS_AREA_OPTIONS,
+				tags: true,
+				allowClear: true,
+				width: 'style'
+			});
+		}
+	}
+
+	// Function for resetting the event form
+	function resetForm(hideForm, retainSubmit){
+		$('#add-event-text').text('   Add Event');
+
+		// Manually reset values because select2 doesn't work with form.reset()
+		$('#activity-form select[name="activity"]').val(null);
+		$('#activity-form select[name="focus_area"]').select2('val', null);
+
+		if (!retainSubmit) {
+			$('#add-event').off('click');
+		}
+		if (hideForm) {
+			$('#activity-form').hide('fast');
+			$('#calendar-button-container').show('fast');
+		}
+	}
+
+	// Constructor for student objects
+	var StudentGroveDisplay = function(student){
+		this.googleId = student.googleId;
+		this.name = student.name;
+		this.image = student.image;
+		this.calendar = student.groveCalendar || [];
+		this.option = $('<option>'+student.name+'</option>').attr('value', student.googleId);
+		this.optionRendered = false;
+
+		this.eventDisplays = _.map(student.groveCalendar, function(event, index) {
+			return new EventDisplay(this, event, index);
+		}.bind(this)) || [];
+	};
+
+	// Check if the student is displayed in the list and, if not, render
+	StudentGroveDisplay.prototype.renderOption = function(selectId){
+		if (!this.optionRendered) {
+			$(selectId).append(this.option);
+			this.optionRendered = true;
+		}
+	};
+
+	// Throw each of the event display rows into the table
+	StudentGroveDisplay.prototype.renderEvents = function(containerTable) {
+		_.each(this.eventDisplays, function(d) {
+			d.render(containerTable);
+
+			// Add any custom focus areas to the FOCUS_AREA_OPTIONS
+			addToFocus(d.event.focus_area);
+		});
+	};
+
+	// When the list is re-sorted through drag and drop, update all the indices
+	StudentGroveDisplay.prototype.updateSort = function(e, ui) {
+
+		var self = this;
+
+		// First, grab the updated list of indices, stored in the data-index attribute, and create a copy of the student's array of events
+		var indices = $('#events-list').sortable("toArray", { attribute: 'data-index' });
+
+		// Now iterate through each index, and update the orders
+		indices.forEach(function(data_index, order) {
+			if (data_index != order) {
+				self.eventDisplays[data_index].index = order;
+				$(self.eventDisplays[data_index].el).attr('data-index', order)
+			}
+		});
+
+		this.eventDisplays = _.sortBy(this.eventDisplays, 'index');
+
+		// Enable the save button now that changes have been made, change the text to "Save Calendar" if not already done
+		$('#save-calendar').removeClass('disabled').empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle');
+	}
+
+	// Render the events into the calendar table
+	StudentGroveDisplay.prototype.renderCalendar = function(containerId) {
+		// Change the title
+		$('#student-name').text(this.name);
+		$('#title-text').text("\'s Grove Cycle")
+		$('#student-icon').empty().append('<img class="student-icon" src="'+this.image+'">')
+
+		// Hide the edit / add event form, if it is open, and reset it.
+		resetForm(true, false);
+
+		// Empty out the list if any events are in there, render the new events, then show calendar and make table sortable
+		$(containerId).empty();
+		this.renderEvents(containerId);
+
+		var self = this;
+
+		$('#calendar-container').show();
+		$('#events-list').sortable({
+			stop: self.updateSort.bind(self)
+		});
+
+		// Make the new event button show the form and attach the proper event handler to it
+		$('#create-new-event').off('click').on('click', function(event){
+			// Update the form legend and show it
+			$('#activity-legend').text('New event for: ' + self.name);
+			$('#activity-form').show('fast');
+
+			// Event handler for submitting
+			$('#add-event').on('click', function(e){
+				e.preventDefault();
+
+				// On submit, grab all the data, create a new EventDisplay object, push it into the student's event displays, and append it to the DOM
+				var newEvent = {};
+				var activity = $('#activity-form select[name="activity"]').val();
+				newEvent.location = activity.split('#')[0];
+				newEvent.activity = activity.split('#')[1];
+
+				var index = self.eventDisplays.length;
+				
+				var focus_area = $('#activity-form select[name="focus_area"]').val();
+				newEvent.focus_area = focus_area
+				addToFocus(focus_area);
+				
+				newEvent = new EventDisplay(self, newEvent, index);
+
+				self.eventDisplays.push(newEvent);
+
+				newEvent.render('#events-list');
+				
+				// Reset the form
+				resetForm(false, true);
+
+				// Enable the save button now that changes have been made, change the text to "Save Calendar" if not already done
+				$('#save-calendar').removeClass('disabled').empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle');
+			});
+
+			// Event handler for canceling
+			$('#cancel-event-add').on('click', function(e){
+				e.preventDefault();
+				// Reset the form and hide it
+				resetForm(true)
+			});
+		});
+		
+		// Update the save calendar button to have disabled class and text of "Save Calendar"
+		$('#save-calendar').empty().append('<i class="fa fa-calendar"></i>   Save Grove Cycle').addClass('disabled');
+
+		// Update the event handler on the save calendar button to refer to this student
+		$('#save-calendar').off('click').on('click', function(event) {
+			$('#save-calendar').empty().text('Saving...').addClass('disabled');
+
+			var calendar = self.eventDisplays.map(function(e) {
+				e.event.checkedIn = false;
+				return e.event;
+			});
+
+			$.ajax('/api/grove/'+self.googleId, {
+				method: 'PUT',
+				data: JSON.stringify({calendar: calendar}),
+				contentType: 'application/json',
+				success: function() {
+					$('#save-calendar').empty().append('<i class="fa fa-calendar"></i>   Cycle Saved!');
+					
+				},
+				error: function(xhr, text, error) {
+					$('#save-calendar').empty().removeClass('btn-success').addClass('btn-danger').text('Error Saving').removeClass('disabled');
+				}
+			});
+		});
+	};
+
+	// Event Display constructor
+	var EventDisplay = function(student, event, index) {
+		this.student = student;
+		this.event = event;
+		this.index = index;
+		// Call create display to make the DOM element
+		this.el = this.createDisplay();
+	};
+
+	// Creates the display element
+	EventDisplay.prototype.createDisplay = function() {
+		// Row item for the event
+		var row = '<tr></tr>';
+
+		// Center
+		var location = $('<td></td>').text(this.event.location);
+
+		// Activity
+		var activity = $('<td></td>').text(this.event.activity);
+
+		// Focus Area
+		var focus_area = $('<td></td>').text(this.event.focus_area);
+
+		// Buttons for editing and removing, added to the EventDisplay object
+		var edit = '<td></td>';
+		this.editButton = $('<button class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></button>');
+		edit = $(edit).append(this.editButton);
+		var remove = '<td></td>';
+		this.removeButton = $('<button class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>');
+		remove = $(remove).append(this.removeButton);
+
+		// Append cells to the row
+		return $(row).attr('data-index', this.index).append(location, activity, focus_area, edit, remove)[0];
+	};
+
+	// Renders the display element
+	EventDisplay.prototype.render = function(container, replace) {
+		
+		// Create a new variable pointing to this particular event display so we can reference it in the edit and remove events
+		var self = this;
+
+		// If the render is after an edit and replace was passed in, replace the old element
+		if (replace) {
+			var oldElement = self.el;
+			self.el = self.createDisplay();
+			$(oldElement).replaceWith(self.el);
+		} else {
+			$(container).append(this.el);
+		}
+
+		// Once the element is added to the DOM, attach the event handlers to its elements
+		// Attach the event handler for the edit button
+		$(this.editButton).click(function(e) {
+			// Show the event form, fill in the defaults for this event, bind submission to changing this event
+			$('#activity-form select[name="activity"]').val(self.event.location+'#'+self.event.activity);
+			$('#activity-form select[name="focus_area"]').select2('val', self.event.focus_area);
+			$('#add-event-text').text('   Save');
+
+			$('#activity-form').show('fast', function(){
+				$('#add-event').off('click').one('click', function(e){
+					e.preventDefault();
+					// Update values for this event
+					var activity = $('#activity-form select[name="activity"]').val();
+					if (activity) {
+						self.event.location = activity.split('#')[0];
+						self.event.activity = activity.split('#')[1];
+					}
+					else {
+						self.event.location = '';
+						self.event.activity = '';
+					}
+
+					var focus_area = $('#activity-form select[name="focus_area"]').val();
+					self.event.focus_area = focus_area;
+					addToFocus(focus_area);
+					
+					// Reset the form, unbind handlers, and hide it
+					resetForm(true);
+
+					// Render the element with replace set to true
+					self.render('#events-list', true);
+
+					// Enable the save calendar button now that changes have been made
+					$('#save-calendar').removeClass('disabled');
+				});
+
+				// Event handler for canceling
+				$('#cancel-event-add').on('click', function(e){
+					e.preventDefault();
+					// Reset the form and hide it
+					resetForm(true);
+				});
+			});
+		});
+		// Attach the event handler for the remove button, binding to this create display
+		$(this.removeButton).click(function(e) {
+			// Remove the el from the DOM
+			$(self.el).remove()
+			// Remove this event display from the student calendar
+			self.student.eventDisplays.splice(self.index, 1);
+			// Change the index of the later events
+			self.student.eventDisplays.forEach(function(eventDisplay){
+				if (eventDisplay.index > self.index) eventDisplay.index--;
+			});
+			// Remove all event handlers from the activity form and hide it
+			resetForm(true);
+		});
+	}
+
+	$(function(){
+		// Load up the grove calendar options from CONFIG.js
+		// The keys of GROVE_ACTIVITIES are the different centers
+		_.keys(GROVE_ACTIVITIES).forEach( function(center) {
+			var group = $('<optgroup>').attr('label', center);
+
+			// For each center, take all the activities and add an option
+			GROVE_ACTIVITIES[center].forEach( function(activity) {
+				var option = $('<option>').attr('value', [center, activity].join('#')).text(activity);
+				group.append(option);
+			});
+			$('select[name="activity"]').append(group);
+		});
+
+		$('select[name="focus_area"]').css('width', '100%').select2({
+			data: FOCUS_AREA_OPTIONS,
+			tags: true,
+			width: 'style'
+		});
+
+		// Get all students
+		$.get('/api/grove', function(data){
+
+			// Initially fill the student list
+			students = _.map(_.sortBy(data, 'name'), function(s) {
+				student = new StudentGroveDisplay(s);
+				student.renderOption('#student-names-select');
+				return student;
+			});
+
+			// When a student is selected, trigger their render calendar
+			$('#student-names-select').on('change', function(e) {
+				var student = _.find(students, { 'googleId': e.target.value});
+				student.renderCalendar('#events-list');
+			});
+
+			// When the student name input is changed, go through the students and only display the ones whose name matches the fragment in the input
+			$('#student-name-search').on('keyup', function(e){
+
+				$('#student-names-select').css('visibility', '');
+
+				var frag = $(this).val().toLowerCase();
+				_.each(students, function(s) {
+					if (s.name.toLowerCase().match(frag)){
+						s.renderOption('#student-names-select');
+					}
+					else {
+						$(s.option).remove();
+						s.optionRendered = false;
+					}
+				});
+
+				// If there is only one student in the list, trigger change
+				if ($('#student-names-select option').length === 1) {
+					$('#student-names-select').trigger('change');
+				}
+			});
+		});
+	});
+
+
+/***/ }
+]);

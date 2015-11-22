@@ -1,0 +1,131 @@
+body {
+  font-family: $font-sans-body;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include flexbox;
+  @include flexwrap(wrap);
+  width: 100%;
+}
+
+#zone-flex {background-color: $flexRed; margin-right: 40px;}
+#zone-maker {background-color: $makerPurple;}
+#zone-ipad {background-color: $ipadYellow;}
+#zone-library {background-color: $libraryGreen; margin-right: 40px;}
+#zone-writing {background-color: $writingOrange;}
+
+#zone-flex, #zone-maker, #zone-library, #zone-writing {
+  width: calc(50% - 40px);
+}
+
+#zone-ipad {
+  width: 100%;
+}
+
+.zone {
+  display: inline-block;
+  text-decoration: none;
+  @include rounded(2px); 
+  @include shadow();
+  margin: 10px;
+
+  h2 {
+    display: inline-block;
+    margin: 20px 0 10px 20px;
+    padding: 0;
+    font-size: 48px;
+    font-weight: $normal;
+    color: $offWhite;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: $normal;
+    color: fade-out($offWhite, .4);
+    margin: 0 0 40px 20px;
+    padding: 0;
+
+    span {
+      font-size: 36px;  
+      color: $offWhite;
+    }
+  }
+
+  .avatar {
+    @include defaultAvatar(white, 56px);
+    display: inline-block;
+    float: right;
+    margin: 20px 20px 0 0;
+  }
+
+  .tapout-request {
+    display: inline-block;
+    float: right;
+    width: 60px;
+    height: 60px;
+    margin: 20px 20px 0 0;
+    border: 3px dotted white;
+    @include rounded(50%);
+
+    .avatar {
+      width: 80%;
+      height: 80%;
+      border: none;
+      margin: 6px;
+    }
+  }
+}
+
+.bottom-stripe {
+  background-color: $offWhite;
+  position: relative;
+  color: $offBlack;
+  padding: 35px 0 20px 20px;
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    color: fade-out($offBlack, .7);
+
+    span {
+      font-size: 36px;  
+      color: $offBlack;
+    }
+  }
+
+  .other-teachers {
+    margin-left: calc(50% - 135px);
+    position: absolute;
+    top: -25px;
+
+    .avatar {
+      @include defaultAvatar($lightGrey, 50px);
+      margin: 0 10px;
+    }
+    
+    .tapout-request {
+      display: inline-block;
+      float: none;
+      width: 50px;
+      height: 50px;
+      margin: 0 10px 0;
+      border: 3px dotted white;
+      @include rounded(50%);
+
+      .avatar {
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 4px;
+      } 
+    }   
+  }
+}
+
+/*PLACEHOLDER FOR OAUTH */
+.zone .jane, .zone .other-teachers .tapout-request .jane { 
+  background-image: url("../img/testSample.png");
+  background-size: 100%;
+}

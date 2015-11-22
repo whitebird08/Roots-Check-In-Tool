@@ -48,6 +48,7 @@ app.get('/scanredirect/:id', function(req, res) {
 app.get('/success', indexController.success);
 app.get('/whoops', indexController.whoops);
 app.get('/grove-calendar', indexController.groveCalendar);
+app.get('/zone-coverage', indexController.zoneCoverage);
 
 app.get('/student-tracker', function(req, res) {
 	indexController.studentTracker(req, res, socket);

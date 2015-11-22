@@ -1,0 +1,85 @@
+// Media queries 
+@mixin bp1 { // Smartphones (portrait & landscape)
+  @media only screen 
+  and (min-width: 320px) 
+  and (max-width: 767px) 
+  {
+    @content; 
+  }    
+}
+
+@mixin bp2 { // Tablets
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin bp3 { // The largey stuff
+  @media only screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexIt($value) {
+  -webkit-box-flex: $value;             
+  -webkit-flex: $value;                 
+  -ms-flex: $value;                    
+  flex: $value;    
+}
+
+@mixin flexwrap($wrap) {
+    flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;                   
+    -webkit-flex-wrap: $wrap;    
+}
+
+@mixin flexDirection($direction) {         
+    -ms-flex-direction: $direction;         
+    -webkit-flex-direction: $direction;     
+    flex-direction: $direction;
+}
+
+@mixin justifyContent($alignment) {
+  -webkit-justify-content: $alignment;
+  justify-content: $alignment;    
+}
+
+@mixin alignContent($alignment) {
+    -webkit-align-items: $alignment;
+    align-items: $alignment;
+}
+
+@mixin alignSelf($align-self) {            
+    -webkit-align-self: $align-self;       
+    -ms-align-self: $align-self;           
+    align-self: $align-self;
+}
+
+@mixin rounded($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin shadow() {
+  -moz-box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+  -webkit-box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+}
+
+@mixin defaultAvatar($bgColor, $size){
+  @include rounded(50%);
+  border: 3px solid white;
+  width: $size;
+  height: $size;
+  background: $bgColor url("../img/avatar-empty.svg") center no-repeat;
+}
+

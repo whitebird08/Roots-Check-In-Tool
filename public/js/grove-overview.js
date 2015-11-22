@@ -124,12 +124,21 @@ function tapout(zone){
 
 function refreshMap(){
 	console.log("refreshing the map");
+	// Add currently-watching class to any class they are currently watching
+
+	// Add Avitar to currently watching
+
+	// Add other teachers Avitars to the other teachers area
+
+	// update counts of students
+
 }
 
 // getStudents();
 getZones();
 
 $(document).ready( function(){
+	refreshMap();
 
 	$(".container a").each(function(index, el){
 		$(el).on("click", function(){

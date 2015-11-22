@@ -23,69 +23,91 @@ block content
 							li
 								a(href='/student-tracker') Student Tracker
 
-	.container
+	.container.grove-overview
 		a#zone-flex.zone(href='javascript:void(0);')
 			h2 Flex
-			.avatar Self
+			.avatar-none
 			h3
 				span.now-count 0
 				|  students scheduled
 			.bottom-stripe
-				.avatar other1
-				.avatar other2
-				.avatar other3
+				.other-teachers
+					.avatar.teach1
+						img(src='')
+					.avatar.teach2
+						img(src='')
+					.avatar.teach3
+						img(src='')
 				h3
 					span.next-count 0
 					|  students on deck
 		a#zone-maker.zone(href='javascript:void(0);')
 			h2 Maker
-			.avatar Self
+			.avatar-none
 			h3
 				span.now-count 0
 				|  students scheduled
 			.bottom-stripe
-				.avatar other1
-				.avatar other2
-				.avatar other3
+				.other-teachers
+					.avatar.teach1
+						img(src='')
+					.avatar.teach2
+						img(src='')
+					.avatar.teach3
+						img(src='')
 				h3
 					span.next-count 0
 					|  students on deck
 		a#zone-ipad.zone(href='javascript:void(0);')
 			h2 iPad
-			.avatar Self
+			.avatar-none
 			h3
 				span.now-count 0
 				|  students scheduled
 			.bottom-stripe
-				.avatar other1
-				.avatar other2
-				.avatar other3
+				.other-teachers
+					.avatar.teach1
+						img(src='')
+					.avatar.teach2
+						img(src='')
+					.avatar.teach3
+						img(src='')
 				h3
 					span.next-count 0
 					|  students on deck
 		a#zone-library.zone(href='javascript:void(0);')
 			h2 Library
-			.avatar Self
+			.avatar
+				img(src='./img/testSample.png')
 			h3
 				span.now-count 0
 				|  students scheduled
 			.bottom-stripe
-				.avatar other1
-				.avatar other2
-				.avatar other3
+				.other-teachers
+					.avatar.teach1
+						img(src='./img/testSample.png')
+					.avatar.teach2
+						img(src='')
+					.avatar.teach3
+						img(src='')
 				h3
 					span.next-count 0
 					|  students on deck
 		a#zone-writing.zone(href='javascript:void(0);')
 			h2 Writing
-			.avatar Self
+			.avatar-pending
+				img(src='./img/testSample.png')
 			h3
 				span.now-count 0
 				|  students scheduled
 			.bottom-stripe
-				.avatar other1
-				.avatar other2
-				.avatar other3
+				.other-teachers
+					.avatar-pending.teach1
+						img(src='./img/testSample.png')
+					.avatar.teach2
+						img(src='')
+					.avatar.teach3
+						img(src='')
 				h3
 					span.next-count 0
 					|  students on deck

@@ -6,6 +6,7 @@ module.exports = {
         StudentTracker: './public/js/lost-kids.js',
         SignIn: './public/js/signin.js',
         GroveCalendar: './public/js/grove-calendar.js',
+        GroveOverview: './public/js/grove-overview.js',
         bundle: [
             "./utils/StartTimes.js",
             "./utils/GetCurrentEvent.js",
@@ -21,7 +22,7 @@ module.exports = {
     },
     output: {
         path: './public/build',
-        filename: '[name].js'       
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['', '.js'],
@@ -36,7 +37,7 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             },
-            { 
+            {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "url-loader?limit=10000&mimetype=application/font-woff"
             },
@@ -47,15 +48,15 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ 
+        new webpack.optimize.CommonsChunkPlugin({
             name: 'bundle',
             minChunks: Infinity
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: {
-                except: ['exports', 'require']
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     mangle: {
+        //         except: ['exports', 'require']
+        //     }
+        // }),
         new webpack.optimize.DedupePlugin(),
         new webpack.ProvidePlugin({
             $: 'jquery',

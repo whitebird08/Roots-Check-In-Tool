@@ -5,6 +5,7 @@ var _ = require('lodash');
 var moment = require('moment');
 var moment_timezone = require('moment-timezone');
 var Teacher = require('../models/teacher');
+var Zone = require('../models/zone');
 
 function getNotId(data) {
 	data = _.pick( data, function(val, key) {
@@ -21,7 +22,7 @@ function getNotId(data) {
 }
 
 var teacherController = {
-  saveTeacher: function(req, res){
+  	saveTeacher: function(req, res){
 		var data = req.body
 
 		Teacher.findOne({ googleId: data.id}, function(err, teacher) {
@@ -56,10 +57,63 @@ var teacherController = {
 		});
 	},
 
-	teacherStatus: function(req, res){
-		var data = req.body
-		console.log("teacherstatus")
-		console.log(data)
+
+	groveOverview: function(req, res, socket) {
+		res.render('grove-overview');
+	},
+
+	getZones: function(req, res){
+		Zone.find({}, function(err, zones) {
+			if (err) {
+				console.error(err);
+				res.status(500).send(err);
+			} else {
+				res.send(zones);
+			}
+		});
+	},
+
+	addTeachertoZone: function(req, res){
+		var data = req.body;
+		var teacher = data.teacher_id;
+		var zone_request = data.zone;
+		Zone.findOne({}, function(err, zone) {
+			if(!zone){
+				var json = {
+					"zone-flex": [],
+					"zone-maker": [],
+					"zone-ipad": [],
+					"zone-library": [],
+					"zone-writing": []
+				};
+				console.log(teacher.zone)
+				console.log()
+				json[zone_request].push(teacher);
+				Zone.create(json, function(err, zone) {
+					if (err) {
+						console.error(err);
+						res.send(err);
+					}
+					else {
+						res.send(zone);
+					}
+				});
+			}
+			else{
+				zone[zone_request].push(teacher);
+				console.log(zone);
+				zone.update({$set: zone }, function(err, result) {
+					if (err) {
+						console.error(err);
+						res.send(err);
+					}
+					else {
+						// Send back the entire use object, extended with the new data, because the update results just give us number of documents affected
+						res.send( _.extend(zone) );
+					}
+				});
+			}
+		});
 	}
 
 }

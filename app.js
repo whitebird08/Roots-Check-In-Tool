@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 
 var indexController = require('./controllers/index.js');
@@ -13,6 +14,8 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+
 
 // SETUP MONGO
 var mongoDB_URL = process.env.MONGOLAB_URI || 'mongodb://localhost'
@@ -68,7 +71,8 @@ app.get('/student-full-schedule', indexController.studentFullSchedule);
 
 //API Routes
 app.put('/api/user/bulk', apiController.bulkUpdateUsers);
-app.post('/api/teacher', teacherController.saveTeacher);app.post('/api/user', googleController.saveUser);
+app.post('/api/teacher', teacherController.saveTeacher);
+app.post('/api/user', googleController.saveUser);
 app.get('/api/user', apiController.getUsers);
 app.get('/api/user/:id', apiController.getUser);
 app.get('/api/grove/:user_id', apiController.getGroveCalendar);

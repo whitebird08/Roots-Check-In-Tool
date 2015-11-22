@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 
 var indexController = require('./controllers/index.js');
@@ -13,6 +14,8 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+
 
 // SETUP MONGO
 var mongoDB_URL = process.env.MONGOLAB_URI || 'mongodb://localhost'

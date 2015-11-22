@@ -24,6 +24,10 @@ function getNotId(data) {
 var teacherController = {
   	saveTeacher: function(req, res){
 		var data = req.body
+		console.log(req.body);
+		res.cookie('googleId', req.body.id);
+		res.cookie('name', req.body.name);
+		res.cookie('image', req.body.image);
 
 		Teacher.findOne({ googleId: data.id}, function(err, teacher) {
 			if (!teacher) {

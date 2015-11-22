@@ -75,6 +75,7 @@ var teacherController = {
 
 	addTeachertoZone: function(req, res){
 		var data = req.body;
+		data = JSON.parse(data.data);
 		var teacher = data.teacher_id;
 		var zone_request = data.zone;
 		Zone.findOne({}, function(err, zone) {
@@ -86,8 +87,6 @@ var teacherController = {
 					"zone-library": [],
 					"zone-writing": []
 				};
-				console.log(teacher.zone)
-				console.log()
 				json[zone_request].push(teacher);
 				Zone.create(json, function(err, zone) {
 					if (err) {
@@ -101,7 +100,43 @@ var teacherController = {
 			}
 			else{
 				zone[zone_request].push(teacher);
+				zone.update({$set: zone }, function(err, result) {
+					if (err) {
+						console.error(err);
+						res.send(err);
+					}
+					else {
+						// Send back the entire use object, extended with the new data, because the update results just give us number of documents affected
+						res.send( _.extend(zone) );
+					}
+				});
+			}
+		});
+	},
+
+	removeTeacherFromZone: function(req, res){
+		var data = req.body;
+		data = JSON.parse(data.data);
+		console.log(data);
+		var teacher = data.teacher_id;
+		var zone_request = data.zone;
+		Zone.findOne({}, function(err, zone) {
+			if(!zone){
+				console.log("Error: you are trying to remove teachers but there are none assigned")
+			}
+			else{
 				console.log(zone);
+				teacher_array = zone[zone_request];
+				new_teacher_array = [];
+				teacher_array.forEach(function(teach){
+					console.log(teach);
+					console.log(teach.googleId);
+					console.log(teach.googleId != teacher.googleId);
+					if (teach.googleId != teacher.googleId){
+						new_teacher_array.push(teach);
+					}
+				});
+				zone[zone_request] = new_teacher_array;
 				zone.update({$set: zone }, function(err, result) {
 					if (err) {
 						console.error(err);

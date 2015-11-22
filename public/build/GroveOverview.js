@@ -5,6 +5,15 @@ webpackJsonp([1],[
 	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(90);
 	__webpack_require__(105);
 
+	function getCurrentTeacher(){
+		return {
+			googleId: "123456",
+			name: "Test Teacher",
+			image: "http://findicons.com/files/icons/350/aqua_smiles/128/to_yawn.png",
+			access_token: "Aajsdhfowers"
+		}
+	}
+
 	function getStudents(){
 		var url = "/api/user";
 		var students;
@@ -64,22 +73,55 @@ webpackJsonp([1],[
 		console.log(zones)
 	}
 
+	function toggleWatching(zone){
+		//check watching class to see if zone is active
+		if($(zone).hasClass( "currently-watching" )){
+			$(zone).removeClass( "currently-watching");
+			tapout(zone);
+		}
+		else{
+			$(zone).addClass("currently-watching");
+			tapin(zone);
+		}
+	}
+
 	function tapin(zone){
 		console.log("you are the zone: "+zone.id);
+		teacher = getCurrentTeacher();
+		console.log(teacher);
 		data = {
-			teacher_id: 54321,
+			teacher_id: teacher,
 			zone: zone.id
 		};
 		url = "/api/zone";
 		$.ajax({
 			url: url,
 			type: "POST",
-			data: data,
+			data: {data: JSON.stringify(data)},
 			dataType: "json",
 			success: function(){
 				refreshMap();
 			}
-		})
+		});
+
+	}
+
+	function tapout(zone){
+		console.log("Removed from zone: "+zone.id);
+		data = {
+			teacher_id: getCurrentTeacher(),
+			zone: zone.id
+		};
+		url = "/api/zone/remove";
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: {data: JSON.stringify(data)},
+			dataType: "json",
+			success: function(){
+				refreshMap();
+			}
+		});
 
 
 	}
@@ -95,7 +137,7 @@ webpackJsonp([1],[
 
 		$(".container a").each(function(index, el){
 			$(el).on("click", function(){
-				tapin(el);
+				toggleWatching(el);
 			});
 		})
 	});

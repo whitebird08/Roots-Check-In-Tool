@@ -77,6 +77,7 @@ app.put('/api/grove/:user_id', apiController.updateGroveCalendar);
 app.get('/api/grove', apiController.listGroveCalendars);
 app.get('/api/zones', teacherController.getZones);
 app.post('/api/zone', teacherController.addTeachertoZone);
+app.post('/api/zone/remove', teacherController.removeTeacherFromZone);
 app.get('/current-event/:user_id', apiController.getCurrentEvent)
 
 

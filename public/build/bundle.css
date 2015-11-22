@@ -307,6 +307,144 @@ iframe[src^="https://apis.google.com"] {
 .teacher-login-box .login-button button .fa-2x {
      font-size: 1.2em;
 }
+
+/*grove-overview page*/
+
+.container.grove-overview {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  width: 100%; }
+#zone-flex {
+  background-color: #D32F2F;
+  margin-right: 40px; }
+
+#zone-maker {
+  background-color: #7B1FA2; }
+
+#zone-ipad {
+  background-color: #FFAB00; }
+
+#zone-library {
+  background-color: #4CAF50;
+  margin-right: 40px; }
+
+#zone-writing {
+  background-color: #FF5722; }
+
+#zone-flex, #zone-maker, #zone-library, #zone-writing {
+  width: calc(50% - 40px); }
+
+#zone-ipad {
+  width: 100%; }
+
+.zone {
+  display: inline-block;
+  text-decoration: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  margin: 10px; }
+  .zone h2 {
+    display: inline-block;
+    margin: 20px 0 10px 20px;
+    padding: 0;
+    font-size: 48px;
+    font-weight: 400;
+    color: #FAFAFA; }
+  .zone h3 {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250, 250, 250, 0.6);
+    margin: 0 0 40px 20px;
+    padding: 0; }
+    .zone h3 span {
+      font-size: 36px;
+      color: #FAFAFA; }
+  .zone .avatar {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 3px solid white;
+    width: 56px;
+    height: 56px;
+    background: white url(67570188203527ad7e8580978e80a0ff.svg) center no-repeat;
+    overflow: hidden;
+    display: inline-block;
+    float: right;
+    margin: 20px 20px 0 0; }
+    .zone .avatar img {
+      width: 56px;
+      height: 56px; }
+
+.bottom-stripe {
+  background-color: #FAFAFA;
+  position: relative;
+  color: #222;
+  padding: 35px 0 20px 20px; }
+  .bottom-stripe h3 {
+    margin: 0;
+    padding: 0;
+    color: rgba(34, 34, 34, 0.3); }
+    .bottom-stripe h3 span {
+      font-size: 36px;
+      color: #222; }
+  .bottom-stripe .other-teachers {
+    margin-left: calc(50% - 135px);
+    position: absolute;
+    top: -25px; }
+    .bottom-stripe .other-teachers .avatar {
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      border: 3px solid white;
+      width: 50px;
+      height: 50px;
+      background: #E7E7E7 url(67570188203527ad7e8580978e80a0ff.svg) center no-repeat;
+      overflow: hidden;
+      margin: 0 10px; }
+      .bottom-stripe .other-teachers .avatar img {
+        width: 50px;
+        height: 50px; }
+
+/* Pending state */
+.avatar-pending {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 3px dotted white;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  display: inline-block;
+  float: right;
+  margin: 20px 20px 0 0; }
+  .avatar-pending img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 6px;
+    width: 80%;
+    height: 80%; }
+
+.other-teachers .avatar-pending {
+  margin: 0 10px; }
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  #zone-flex, #zone-maker, #zone-library, #zone-writing {
+    flex: 1 50%;
+    margin-right: 10px; }
+
+  #zone-ipad {
+    flex: 2 100%; } }
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.

@@ -2,16 +2,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-
 var indexController = require('./controllers/index.js');
 var googleController = require('./controllers/google.js');
 var apiController = require('./controllers/apiController.js');
 var teacherController = require('./controllers/teacherController.js');
 
+
 var app = express();
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
+// app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());

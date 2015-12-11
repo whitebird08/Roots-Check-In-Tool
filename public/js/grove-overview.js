@@ -1,5 +1,7 @@
 require('jquery');
 require('jquery-ui');
+require('handlebars');
+
 
 function getCurrentTeacher(){
 	//pull from cookie or database

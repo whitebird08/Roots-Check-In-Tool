@@ -59,14 +59,7 @@ var teacherController = {
 			}
 		});
 	},
-
-	// getUserInfo: function(req, res) {
-	// 	res.cookie('googleId', req.body.id);
-	// 	res.cookie('name', req.body.name);
-	// 	res.cookie('image', req.body.image);
-	// }
-
-
+	
 	groveOverview: function(req, res, socket) {
 		var user = {
 			id: req.cookies.googleId,

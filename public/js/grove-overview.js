@@ -2,9 +2,20 @@ require('jquery');
 require('jquery-ui');
 require('handlebars');
 
+// from teacherController
+
+// groveOverview: function(req, res, socket) {
+// 	var user = {
+// 		id: req.cookies.googleId,
+// 		name: req.cookies.name,
+// 		image:  req.cookies.image
+// 	}
+// 	res.render('grove-overview', {user: user});
+// }
 
 function getCurrentTeacher(){
 	//pull from cookie or database
+
 	return {
 		googleId: "123456",
 		name: "Test Teacher",

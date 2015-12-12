@@ -1,8 +1,11 @@
 require('jquery');
 require('jquery-ui');
-require('handlebars');
 
+
+// get cookies to access data
+ 
 // from teacherController
+
 
 // groveOverview: function(req, res, socket) {
 // 	var user = {
@@ -14,14 +17,12 @@ require('handlebars');
 // }
 
 function getCurrentTeacher(){
-	//pull from cookie or database
-
-	return {
-		googleId: "123456",
-		name: "Test Teacher",
-		image: "http://findicons.com/files/icons/350/aqua_smiles/128/to_yawn.png",
-		access_token: "Aajsdhfowers"
-	}
+console.log(cookies.get(name));
+	// return {
+	// 	id: req.cookies.googleId,
+	// 		name: req.cookies.name,
+	// 		image:  req.cookies.image
+	// }
 }
 
 function getStudents(){

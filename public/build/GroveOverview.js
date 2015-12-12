@@ -1,19 +1,37 @@
 webpackJsonp([1],[
 /* 0 */
+/*!*************************************!*\
+  !*** ./public/js/grove-overview.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(90);
-	__webpack_require__(105);
-
+	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(/*! jquery */ 90);
+	__webpack_require__(/*! jquery-ui */ 105);
+	
+	
+	// get cookies to access data
+	 
+	// from teacherController
+	
+	
+	// groveOverview: function(req, res, socket) {
+	// 	var user = {
+	// 		id: req.cookies.googleId,
+	// 		name: req.cookies.name,
+	// 		image:  req.cookies.image
+	// 	}
+	// 	res.render('grove-overview', {user: user});
+	// }
+	
 	function getCurrentTeacher(){
-		return {
-			googleId: "123456",
-			name: "Test Teacher",
-			image: "http://findicons.com/files/icons/350/aqua_smiles/128/to_yawn.png",
-			access_token: "Aajsdhfowers"
-		}
+	console.log(cookies.get(name));
+		// return {
+		// 	id: req.cookies.googleId,
+		// 		name: req.cookies.name,
+		// 		image:  req.cookies.image
+		// }
 	}
-
+	
 	function getStudents(){
 		var url = "/api/user";
 		var students;
@@ -26,7 +44,7 @@ webpackJsonp([1],[
 			}
 		})
 	}
-
+	
 	function updateStudentNumbers(students){
 		console.log(students);
 		var zoneNow = {
@@ -43,7 +61,7 @@ webpackJsonp([1],[
 			"Library Center": 0,
 			"Writing Center": 0
 		};
-
+	
 	    students.forEach(function(doc) {
 	    	if (doc.groveCalendar.length > 0) {
 	    		zoneNow[doc.groveCalendar[0].location] += 1
@@ -55,7 +73,7 @@ webpackJsonp([1],[
 	    	console.log('now: ', zoneNow, 'next: ', zoneNext);
 	    });
 	}
-
+	
 	function getZones(){
 		var url = "/api/zones";
 		var zones;
@@ -68,23 +86,23 @@ webpackJsonp([1],[
 			}
 		})
 	}
-
+	
 	function updateZoneAssignments(zones){
 		console.log(zones)
 	}
-
+	
 	function toggleWatching(zone){
 		//check watching class to see if zone is active
 		if($(zone).hasClass( "currently-watching" )){
 			$(zone).removeClass( "currently-watching");
 			tapout(zone);
 		}
-		else{
+		else {
 			$(zone).addClass("currently-watching");
 			tapin(zone);
 		}
 	}
-
+	
 	function tapin(zone){
 		console.log("you are the zone: "+zone.id);
 		teacher = getCurrentTeacher();
@@ -103,9 +121,9 @@ webpackJsonp([1],[
 				refreshMap();
 			}
 		});
-
+	
 	}
-
+	
 	function tapout(zone){
 		console.log("Removed from zone: "+zone.id);
 		data = {
@@ -122,36 +140,37 @@ webpackJsonp([1],[
 				refreshMap();
 			}
 		});
-
-
+	
+	
 	}
-
+	
 	function refreshMap(){
 		console.log("refreshing the map");
 		// Add currently-watching class to any class they are currently watching
-
+	
 		// Add Avitar to currently watching
-
+	
 		// Add other teachers Avitars to the other teachers area
-
+	
 		// update counts of students
-
+	
 	}
-
+	
 	// getStudents();
 	getZones();
-
+	
 	$(document).ready( function(){
 		refreshMap();
-
+	
 		$(".container a").each(function(index, el){
 			$(el).on("click", function(){
 				toggleWatching(el);
 			});
 		})
 	});
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(90)))
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 90)))
 
 /***/ }
 ]);
+//# sourceMappingURL=GroveOverview.js.map

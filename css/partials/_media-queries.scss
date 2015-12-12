@@ -1,0 +1,11 @@
+@include bp1 {
+  
+  #zone-flex, #zone-maker, #zone-library, #zone-writing {
+    flex: 1 50%;
+    margin-right: 10px;
+  }
+
+  #zone-ipad {
+    flex: 2 100%;
+  }
+}

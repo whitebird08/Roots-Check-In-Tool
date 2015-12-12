@@ -24,7 +24,6 @@ function getNotId(data) {
 var teacherController = {
   	saveTeacher: function(req, res){
 		var data = req.body
-		console.log(req.body);
 		res.cookie('googleId', req.body.id);
 		res.cookie('name', req.body.name);
 		res.cookie('image', req.body.image);
@@ -61,9 +60,20 @@ var teacherController = {
 		});
 	},
 
+	// getUserInfo: function(req, res) {
+	// 	res.cookie('googleId', req.body.id);
+	// 	res.cookie('name', req.body.name);
+	// 	res.cookie('image', req.body.image);
+	// }
+
 
 	groveOverview: function(req, res, socket) {
-		res.render('grove-overview');
+		var user = {
+			id: req.cookies.googleId,
+			name: req.cookies.name,
+			image:  req.cookies.image
+		}
+		res.render('grove-overview', {user: user});
 	},
 
 	getZones: function(req, res){

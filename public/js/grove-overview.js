@@ -1,7 +1,10 @@
 require('jquery');
 require('jquery-ui');
+require('handlebars');
+
 
 function getCurrentTeacher(){
+	//pull from cookie or database
 	return {
 		googleId: "123456",
 		name: "Test Teacher",
@@ -75,7 +78,7 @@ function toggleWatching(zone){
 		$(zone).removeClass( "currently-watching");
 		tapout(zone);
 	}
-	else{
+	else {
 		$(zone).addClass("currently-watching");
 		tapin(zone);
 	}

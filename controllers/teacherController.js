@@ -59,7 +59,7 @@ var teacherController = {
 			}
 		});
 	},
-	
+
 	groveOverview: function(req, res, socket) {
 		var user = {
 			id: req.cookies.googleId,

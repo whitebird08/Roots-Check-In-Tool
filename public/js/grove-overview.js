@@ -3,7 +3,7 @@ require('jquery-ui');
 
 
 // get cookies to access data
- 
+
 // from teacherController
 
 
@@ -97,7 +97,7 @@ function toggleWatching(zone){
 }
 
 function tapin(zone){
-	console.log("you are the zone: "+zone.id);
+	console.log("you are the zone: "+ zone.id);
 	teacher = getCurrentTeacher();
 	console.log(teacher);
 	data = {
@@ -118,11 +118,12 @@ function tapin(zone){
 }
 
 function tapout(zone){
-	console.log("Removed from zone: "+zone.id);
+	console.log("Removed from zone: "+ zone.id);
 	data = {
 		teacher_id: getCurrentTeacher(),
 		zone: zone.id
 	};
+  
 	url = "/api/zone/remove";
 	$.ajax({
 		url: url,

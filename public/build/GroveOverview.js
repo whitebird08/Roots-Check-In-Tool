@@ -9,28 +9,10 @@ webpackJsonp([1],[
 	__webpack_require__(/*! jquery-ui */ 105);
 	
 	
-	// get cookies to access data
-	 
-	// from teacherController
-	
-	
-	// groveOverview: function(req, res, socket) {
-	// 	var user = {
-	// 		id: req.cookies.googleId,
-	// 		name: req.cookies.name,
-	// 		image:  req.cookies.image
-	// 	}
-	// 	res.render('grove-overview', {user: user});
-	// }
-	
-	function getCurrentTeacher(){
+	function getCurrentTeacher() {
 	console.log(cookies.get(name));
-		// return {
-		// 	id: req.cookies.googleId,
-		// 		name: req.cookies.name,
-		// 		image:  req.cookies.image
-		// }
-	}
+	console.log('yo from getCurrentTeacher' );
+	};
 	
 	function getStudents(){
 		var url = "/api/user";
@@ -104,7 +86,7 @@ webpackJsonp([1],[
 	}
 	
 	function tapin(zone){
-		console.log("you are the zone: "+zone.id);
+		console.log("you are the zone: "+ zone.id);
 		teacher = getCurrentTeacher();
 		console.log(teacher);
 		data = {
@@ -125,11 +107,12 @@ webpackJsonp([1],[
 	}
 	
 	function tapout(zone){
-		console.log("Removed from zone: "+zone.id);
+		console.log("Removed from zone: "+ zone.id);
 		data = {
 			teacher_id: getCurrentTeacher(),
 			zone: zone.id
 		};
+	
 		url = "/api/zone/remove";
 		$.ajax({
 			url: url,

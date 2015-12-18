@@ -1,8 +1,21 @@
 require('jquery');
 require('jquery-ui');
 
+// function from scotch tutorial to parse cookie https://scotch.io/quick-tips/easily-create-read-and-erase-cookies-with-jquery
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
 function getCurrentTeacher() {
-	console.log(JSON.parse("" + document.cookie + ""));
+	console.log(document.cookie);
+	return readCookie('googleId');
 };
 
 function getStudents(){
@@ -78,10 +91,10 @@ function toggleWatching(zone){
 
 function tapin(zone){
 	console.log("you are the zone: "+ zone.id);
-	teacher = getCurrentTeacher();
-	console.log(teacher);
+	googleId = getCurrentTeacher();
+	console.log(googleId);
 	data = {
-		teacher_id: teacher,
+		teacher_id: googleId,
 		zone: zone.id
 	};
 	url = "/api/zone";

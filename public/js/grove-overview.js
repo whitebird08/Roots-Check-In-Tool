@@ -1,10 +1,8 @@
 require('jquery');
 require('jquery-ui');
 
-
 function getCurrentTeacher() {
-console.log(cookies.get(name));
-console.log('yo from getCurrentTeacher' );
+	console.log(JSON.parse("" + document.cookie + ""));
 };
 
 function getStudents(){
@@ -18,7 +16,7 @@ function getStudents(){
 			updateStudentNumbers(students)
 		}
 	})
-}
+};
 
 function updateStudentNumbers(students){
 	console.log(students);

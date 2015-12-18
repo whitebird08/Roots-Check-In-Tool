@@ -2,28 +2,10 @@ require('jquery');
 require('jquery-ui');
 
 
-// get cookies to access data
-
-// from teacherController
-
-
-// groveOverview: function(req, res, socket) {
-// 	var user = {
-// 		id: req.cookies.googleId,
-// 		name: req.cookies.name,
-// 		image:  req.cookies.image
-// 	}
-// 	res.render('grove-overview', {user: user});
-// }
-
-function getCurrentTeacher(){
+function getCurrentTeacher() {
 console.log(cookies.get(name));
-	// return {
-	// 	id: req.cookies.googleId,
-	// 		name: req.cookies.name,
-	// 		image:  req.cookies.image
-	// }
-}
+console.log('yo from getCurrentTeacher' );
+};
 
 function getStudents(){
 	var url = "/api/user";
@@ -123,7 +105,7 @@ function tapout(zone){
 		teacher_id: getCurrentTeacher(),
 		zone: zone.id
 	};
-  
+
 	url = "/api/zone/remove";
 	$.ajax({
 		url: url,

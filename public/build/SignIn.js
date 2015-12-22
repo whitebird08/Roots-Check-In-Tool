@@ -9,11 +9,11 @@ webpackJsonp([2],[
 	var _ = __webpack_require__(/*! lodash */ 1);
 	var moment = __webpack_require__(/*! moment */ 3);
 	var $ = __webpack_require__(/*! jquery */ 90);
-	__webpack_require__(/*! jquery.countdown */ 106);
+	__webpack_require__(/*! jquery.countdown */ 107);
 	
 	// Utils, bound to correct values for event and transition length
-	var startTimes = _.partial( __webpack_require__(/*! ../../utils/StartTimes */ 107), EVENT_LENGTH, TRANSITION_LENGTH);
-	var getCurrentEvent = _.partialRight( __webpack_require__(/*! ../../utils/GetCurrentEvent */ 108), EVENT_LENGTH, TRANSITION_LENGTH );
+	var startTimes = _.partial( __webpack_require__(/*! ../../utils/StartTimes */ 108), EVENT_LENGTH, TRANSITION_LENGTH);
+	var getCurrentEvent = _.partialRight( __webpack_require__(/*! ../../utils/GetCurrentEvent */ 109), EVENT_LENGTH, TRANSITION_LENGTH );
 	
 	// Renders the progress bar at the top of page, using the start time of the student's next (or current) event.
 	renderProgressBar = function(eventStart){

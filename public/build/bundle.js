@@ -145,16 +145,16 @@
   \********************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./utils/StartTimes.js */107);
-	__webpack_require__(/*! ./utils/GetCurrentEvent.js */108);
+	__webpack_require__(/*! ./utils/StartTimes.js */108);
+	__webpack_require__(/*! ./utils/GetCurrentEvent.js */109);
 	__webpack_require__(/*! jquery */90);
 	__webpack_require__(/*! lodash */1);
 	__webpack_require__(/*! moment */3);
 	__webpack_require__(/*! bootstrap */92);
 	__webpack_require__(/*! select2 */91);
 	__webpack_require__(/*! jquery-ui */105);
-	__webpack_require__(/*! jquery.countdown */106);
-	module.exports = __webpack_require__(/*! ./public/css-load.js */109);
+	__webpack_require__(/*! jquery.countdown */107);
+	module.exports = __webpack_require__(/*! ./public/css-load.js */110);
 
 
 /***/ },
@@ -56364,7 +56364,8 @@
 
 
 /***/ },
-/* 106 */
+/* 106 */,
+/* 107 */
 /*!************************************************!*\
   !*** ./~/jquery.countdown/jquery.countdown.js ***!
   \************************************************/
@@ -56889,7 +56890,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 90)))
 
 /***/ },
-/* 107 */
+/* 108 */
 /*!*****************************!*\
   !*** ./utils/StartTimes.js ***!
   \*****************************/
@@ -56922,7 +56923,7 @@
 	}
 
 /***/ },
-/* 108 */
+/* 109 */
 /*!**********************************!*\
   !*** ./utils/GetCurrentEvent.js ***!
   \**********************************/
@@ -56930,7 +56931,7 @@
 
 	var _          = __webpack_require__(/*! lodash */ 1);
 	var moment     = __webpack_require__(/*! moment */ 3);
-	var startTimes = __webpack_require__(/*! ./StartTimes */ 107);
+	var startTimes = __webpack_require__(/*! ./StartTimes */ 108);
 	
 	/*
 		Helper function to get the current event.
@@ -56974,21 +56975,21 @@
 
 
 /***/ },
-/* 109 */
+/* 110 */
 /*!****************************!*\
   !*** ./public/css-load.js ***!
   \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// Require all our styles
-	__webpack_require__(/*! ./stylesheets/main.css */ 110);
-	__webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ 115);
-	__webpack_require__(/*! font-awesome/css/font-awesome.css */ 122);
-	__webpack_require__(/*! select2/dist/css/select2.css */ 130);
+	__webpack_require__(/*! ./stylesheets/main.css */ 111);
+	__webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ 116);
+	__webpack_require__(/*! font-awesome/css/font-awesome.css */ 123);
+	__webpack_require__(/*! select2/dist/css/select2.css */ 131);
 
 
 /***/ },
-/* 110 */
+/* 111 */
 /*!*************************************!*\
   !*** ./public/stylesheets/main.css ***!
   \*************************************/
@@ -56997,37 +56998,37 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 111 */,
 /* 112 */,
 /* 113 */,
 /* 114 */,
-/* 115 */
+/* 115 */,
+/* 116 */
 /*!********************************************!*\
   !*** ./~/bootstrap/dist/css/bootstrap.css ***!
   \********************************************/
-110,
-/* 116 */,
+111,
 /* 117 */,
 /* 118 */,
 /* 119 */,
 /* 120 */,
 /* 121 */,
-/* 122 */
+/* 122 */,
+/* 123 */
 /*!*********************************************!*\
   !*** ./~/font-awesome/css/font-awesome.css ***!
   \*********************************************/
-110,
-/* 123 */,
+111,
 /* 124 */,
 /* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
 /* 129 */,
-/* 130 */
+/* 130 */,
+/* 131 */
 /*!****************************************!*\
   !*** ./~/select2/dist/css/select2.css ***!
   \****************************************/
-110
+111
 /******/ ])));
 //# sourceMappingURL=bundle.js.map

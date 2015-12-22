@@ -11,7 +11,7 @@ webpackJsonp([3],[
 	var $      = __webpack_require__(/*! jquery */ 90);
 	
 	// Utils, bound to correct values for event and transition length
-	var startTimes = _.partial( __webpack_require__(/*! ../../utils/StartTimes */ 107), EVENT_LENGTH, TRANSITION_LENGTH);
+	var startTimes = _.partial( __webpack_require__(/*! ../../utils/StartTimes */ 108), EVENT_LENGTH, TRANSITION_LENGTH);
 	
 	/* 
 		Sorts first by status, showing students that are in the correct center first, and then sorts by first name alphabetically.
